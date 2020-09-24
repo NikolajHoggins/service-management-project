@@ -1,7 +1,6 @@
 var status;
 const backendService = new BackendService("jesper");
 
-backendService.addProduct("Jesper", "Jespers diller", 79, "asdasd");
 backendService.getProducts().then((resp) => getList(resp));
 function logIn() {
   var username = document.getElementById("inputField1").value;
@@ -26,6 +25,7 @@ function logIn() {
 function getList(resp) {
 
   resp.forEach(element => {
+    console.log(typeof element.name);
     console.log(element.name);
     var container = document.getElementById("flex-container");
     var newItem = document.createElement("div");
