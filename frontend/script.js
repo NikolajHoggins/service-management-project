@@ -10,8 +10,8 @@ function logIn(){
     }
 
     if (status == "user"){
-        
+        window.location.href = "userpage.html"
     } else if (status == "admin"){
-        
+        window.location.href = "adminpage.html"
     }
 }
