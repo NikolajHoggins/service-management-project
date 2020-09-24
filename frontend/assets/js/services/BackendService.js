@@ -26,11 +26,4 @@ class BackendService {
       },
     }).then((resp) => resp.json());
   }
-
-  getCityForecastByCoordinates(lat, lon) {
-    //api.openweathermap.org/data/2.5/onecall?lat={lat}&lon={lon}&exclude={part}&appid={YOUR API KEY}
-    const url = `${this.baseurl}/onecall?lat=${lat}&lon=${lon}&exclude=current,hourly&appid=${this.apikey}&units=metric`;
-
-    return fetch(url).then((resp) => resp.json());
-  }
 }
