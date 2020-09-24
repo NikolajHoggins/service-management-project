@@ -18,9 +18,10 @@ class BackendService {
     );
     xhr.onload = () => callback(JSON.parse(xhr.responseText));
   }
-  async register(email, password) {
+
+  register(email, password, callback = () => {}) {
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", this.baseurl + "/login", true);
+    xhr.open("POST", this.baseurl + "/register", true);
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.setRequestHeader("Authorization", this.apikey);
     xhr.send(
@@ -29,7 +30,7 @@ class BackendService {
         password,
       })
     );
-    return JSON.parse(xhr.response);
+    xhr.onload = () => callback(JSON.parse(xhr.responseText));
   }
 
   addProduct(name, description, price, picture) {

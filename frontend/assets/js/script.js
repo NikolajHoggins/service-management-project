@@ -2,11 +2,7 @@ var status;
 const backendService = new BackendService("jesper");
 const cartService = new CartService();
 
-cartService.addItem(1);
 cartService.getCart().then((resp) => console.log(resp));
-backendService.login("mollevip@gmail.com", "password", (response) =>
-  console.log(response)
-);
 backendService.getProducts().then((resp) => console.log(resp));
 
 function logIn() {
