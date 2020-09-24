@@ -26,6 +26,30 @@ app.use(function (req, res, next) {
   next();
 });
 
+//add product
+app.post("/addProduct", (req, res) => {
+  //Check if user is admin
+  db.query(
+    `INSERT INTO products(name, description, price, picture) VALUES ('${req.body.name}' , '${req.body.description}', '${req.body.price}', '${req.body.picture}')`,
+    (err) => {
+      console.log(err);
+    }
+  );
+  res.sendStatus(200);
+});
+
+//Get products
+app.get("/getProducts", (req, res) => {
+  db.query(`SELECT * FROM products`, (err, result) => {
+    if (result) {
+      console.log(result);
+      res.send(result);
+    } else if (err) {
+      res.status(500).json({ error: err });
+    }
+  });
+});
+
 app.listen(process.env.APP_PORT ?? 8000, () => {
   console.log(`Example app listening on port ${process.env.APP_PORT ?? 8000}!`);
 });

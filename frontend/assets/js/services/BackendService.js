@@ -4,20 +4,23 @@ class BackendService {
     this.baseurl = `http://localhost:8000`;
   }
 
-  sendCityRequest(city) {
+  addProduct(name, description, price, picture) {
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", this.baseurl + "/addRequest", true);
+    xhr.open("POST", this.baseurl + "/addProduct", true);
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.setRequestHeader("Authorization", this.apikey);
     xhr.send(
       JSON.stringify({
-        city,
+        name,
+        description,
+        price,
+        picture,
       })
     );
   }
 
-  getRequestedCities() {
-    return fetch(`${this.baseurl}/`, {
+  getProducts() {
+    return fetch(`${this.baseurl}/getProducts`, {
       headers: {
         Authorization: this.apikey,
       },
