@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <div>
+        <a href="/index.html" style="float: center">Products</a>
+        <h1>Admin Page</h1>
+        <form>
+            <label for="itemName">Name:</label><br>
+            <input type="text" id="itemName"><br><br>
+            <label for="itemDescription">Description:</label><br>
+            <input type="text" id="itemDescription"><br><br>
+            <label for="itemPrice">Price:</label><br>
+            <input type="text" id="itemPrice"><br><br>
+            <label for="itemImg">Image:</label><br>
+            <input type="text" id="itemImg"><br><br>
+            <button id="submit" onclick="adminAddItem()">Add item</button>
+        </form>
+    </div>
+    <script src="./assets/js/services/BackendService.js"></script>
+    <script src="./assets/js/adminScript.js"></script>
+</body>

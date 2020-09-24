@@ -2,6 +2,7 @@ var status;
 const backendService = new BackendService("jesper");
 const cartService = new CartService();
 
+backendService.getProducts().then((resp) => getList(resp));
 function logIn(e) {
   e.preventDefault();
   var username = document.getElementById("inputField1").value;
@@ -24,7 +25,8 @@ function logIn(e) {
 }
 
 function getList(resp) {
-  resp.forEach((element) => {
+
+  resp.forEach(element => {
     console.log(element.name);
     var container = document.getElementById("flex-container");
     var newItem = document.createElement("div");
@@ -41,4 +43,8 @@ function getList(resp) {
     newItem.appendChild(cartButton);
     container.appendChild(newItem);
   });
+}
+
+function addToCart(id) {
+  console.log(id + " added to cart");
 }
