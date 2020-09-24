@@ -26,6 +26,33 @@ app.use(function (req, res, next) {
   next();
 });
 
+//Usershit
+app.post("/register", (req, res) => {
+  db.query(
+    `INSERT INTO users(name, email, password, address, phone_number, user_type) VALUES ('${req.body.name}' , '${req.body.description}', '${req.body.price}', '${req.body.picture}')`,
+    (err) => {
+      console.log(err);
+    }
+  );
+  res.sendStatus(200);
+});
+
+app.post("/login", (req, res) => {
+  db.query(
+    `SELECT * FROM users WHERE email = '${req.body.email}' AND password = '${req.body.password}'`,
+    (err, result) => {
+      if (err) res.sendStatus(500);
+      if (result.length) {
+        res.json({ status: "success" });
+      } else if (result.length === 0) {
+        res.json({ status: "error", error: "invalid login" });
+      } else {
+        res.sendStatus(500);
+      }
+    }
+  );
+});
+
 //add product
 app.post("/addProduct", (req, res) => {
   //Check if user is admin
