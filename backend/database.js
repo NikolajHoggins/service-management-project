@@ -16,7 +16,7 @@ con.connect(function (err) {
 
 //Create users table;
 con.query(
-  "CREATE TABLE IF NOT EXISTS users(id int AUTO_INCREMENT PRIMARY KEY, name varchar(255), email varchar(255) NOT NULL, password varchar(255) NOT NULL, address varchar(255), phone_number varchar(255), user_type varchar(55) DEFAULT 'customer');",
+  "CREATE TABLE IF NOT EXISTS users(id int AUTO_INCREMENT PRIMARY KEY, name varchar(255), email varchar(255) NOT NULL UNIQUE, password varchar(255) NOT NULL, address varchar(255), phone_number varchar(255), user_type varchar(55) DEFAULT 'customer');",
   (err) => {
     if (err) console.log("ERROR: \n", err);
   }
