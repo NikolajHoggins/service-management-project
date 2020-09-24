@@ -14,17 +14,9 @@ con.connect(function (err) {
   console.log("Connected!");
 });
 
-//Create admin table;
+//Create users table;
 con.query(
-  "CREATE TABLE IF NOT EXISTS admins(id int AUTO_INCREMENT PRIMARY KEY, email varchar(255) NOT NULL, password varchar(255) NOT NULL);",
-  (err) => {
-    if (err) console.log("ERROR: \n", err);
-  }
-);
-
-//Create customers table;
-con.query(
-  "CREATE TABLE IF NOT EXISTS customers(id int AUTO_INCREMENT PRIMARY KEY, name varchar(255), email varchar(255) NOT NULL, password varchar(255) NOT NULL, address varchar(255), phone_number varchar(255));",
+  "CREATE TABLE IF NOT EXISTS users(id int AUTO_INCREMENT PRIMARY KEY, name varchar(255), email varchar(255) NOT NULL, password varchar(255) NOT NULL, address varchar(255), phone_number varchar(255), user_type varchar(55) DEFAULT 'customer');",
   (err) => {
     if (err) console.log("ERROR: \n", err);
   }
@@ -38,14 +30,14 @@ con.query(
 );
 
 con.query(
-  "CREATE TABLE IF NOT EXISTS orders(id int AUTO_INCREMENT PRIMARY KEY,date varchar(255),customerid int,FOREIGN KEY (customerid) REFERENCES customers(id));",
+  "CREATE TABLE IF NOT EXISTS orders(id int AUTO_INCREMENT PRIMARY KEY,date varchar(255),customerid int,FOREIGN KEY (customerid) REFERENCES users(id));",
   (err) => {
     if (err) console.log("ERROR: \n", err);
   }
 );
 
 con.query(
-  "CREATE TABLE IF NOT EXISTS orderdetails(id int AUTO_INCREMENT PRIMARY KEY,orderid int,productid int,quantity int,FOREIGN KEY (orderid) REFERENCES customers(id),FOREIGN KEY (productid) REFERENCES products(id));",
+  "CREATE TABLE IF NOT EXISTS orderdetails(id int AUTO_INCREMENT PRIMARY KEY,orderid int,productid int,quantity int,FOREIGN KEY (orderid) REFERENCES users(id),FOREIGN KEY (productid) REFERENCES products(id));",
   (err) => {
     if (err) console.log("ERROR: \n", err);
   }
