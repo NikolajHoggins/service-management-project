@@ -42,7 +42,6 @@ app.post("/addProduct", (req, res) => {
 app.get("/getProducts", (req, res) => {
   db.query(`SELECT * FROM products`, (err, result) => {
     if (result) {
-      console.log(result);
       res.send(result);
     } else if (err) {
       res.status(500).json({ error: err });
