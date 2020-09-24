@@ -27,27 +27,23 @@ function logIn() {
   }
 }
 
-function addItem() {
-  var int = 0;
+function getList(resp) {
 
-  while (int < 5) {
+  resp.forEach(element => {
+    console.log(element.name);
     var container = document.getElementById("flex-container");
     var newItem = document.createElement("div");
-    newItem.innerHTML =
-      "<h3>Item header</h3> <img src='https://freesvg.org/img/Placeholder.png'></img> <br> <p>Description</p> <br> <p>Price</p> <button>Add to cart</button>";
+    var cartButton = document.createElement("button");
+
+    cartButton.innerHTML = "Add to cart";
+    cartButton.onclick = ()=> addToCart(element.id);
+
+    newItem.innerHTML = `<h3>${element.name}</h3>`;
+    newItem.innerHTML += `<img src='https://freesvg.org/img/Placeholder.png'></img> <br>`;
+    newItem.innerHTML += `<p>${element.description}</p> <br>`;
+    newItem.innerHTML += `<p>kr. ${element.price.toFixed(2)}</p>`;
+
+    newItem.appendChild(cartButton);
     container.appendChild(newItem);
-    int++;
-  }
-}
-
-function goToCart(){
-  window.location.href = "cartpage.html";
-}
-
-function goToSignIn(){
-  window.location.href = "loginpage.html";
-}
-
-function goToShop(){
-  window.location.href = "index.html";
+  });
 }
