@@ -10,8 +10,10 @@ function logIn(){
     }
 
     if (status == "user"){
-        window.location.href = "userpage.html"
+        window.location.href = "index.html"
     } else if (status == "admin"){
-        window.location.href = "adminpage.html"
+        window.location.href = "index.html"
+    } else {
+        document.getElementById("errorMessage").innerText = "ERROR, WRONG USERNAME OR PASSWORD"
     }
 }
