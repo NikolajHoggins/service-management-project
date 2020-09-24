@@ -18,9 +18,9 @@ function logIn() {
   }
 
   if (status == "user") {
-    window.location.href = "index.html";
+    goToShop();
   } else if (status == "admin") {
-    window.location.href = "index.html";
+    goToShop();
   } else {
     document.getElementById("errorMessage").innerText =
       "ERROR, WRONG USERNAME OR PASSWORD";
@@ -38,4 +38,16 @@ function addItem() {
     container.appendChild(newItem);
     int++;
   }
+}
+
+function goToCart(){
+  window.location.href = "cartpage.html";
+}
+
+function goToSignIn(){
+  window.location.href = "loginpage.html";
+}
+
+function goToShop(){
+  window.location.href = "index.html";
 }
