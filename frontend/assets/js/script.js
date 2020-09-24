@@ -1,5 +1,9 @@
 var status;
 const backendService = new BackendService("jesper");
+const cartService = new CartService();
+
+cartService.addItem(1);
+cartService.getCart().then((resp) => console.log(resp));
 
 backendService.getProducts().then((resp) => console.log(resp));
 
