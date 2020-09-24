@@ -4,7 +4,21 @@ class BackendService {
     this.baseurl = `http://localhost:8000`;
   }
 
-  async login(email, password) {
+  login(email, password, callback) {
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", this.baseurl + "/login", true);
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.setRequestHeader("Authorization", this.apikey);
+    xhr.responseType = "text";
+    xhr.send(
+      JSON.stringify({
+        email,
+        password,
+      })
+    );
+    xhr.onload = () => callback(JSON.parse(xhr.responseText));
+  }
+  async register(email, password) {
     var xhr = new XMLHttpRequest();
     xhr.open("POST", this.baseurl + "/login", true);
     xhr.setRequestHeader("Content-Type", "application/json");
@@ -15,7 +29,7 @@ class BackendService {
         password,
       })
     );
-    console.log(xhr);
+    return JSON.parse(xhr.response);
   }
 
   addProduct(name, description, price, picture) {

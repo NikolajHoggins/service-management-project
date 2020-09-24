@@ -4,7 +4,9 @@ const cartService = new CartService();
 
 cartService.addItem(1);
 cartService.getCart().then((resp) => console.log(resp));
-
+backendService.login("mollevip@gmail.com", "password", (response) =>
+  console.log(response)
+);
 backendService.getProducts().then((resp) => console.log(resp));
 
 function logIn() {
@@ -28,15 +30,14 @@ function logIn() {
 }
 
 function getList(resp) {
-
-  resp.forEach(element => {
+  resp.forEach((element) => {
     console.log(element.name);
     var container = document.getElementById("flex-container");
     var newItem = document.createElement("div");
     var cartButton = document.createElement("button");
 
     cartButton.innerHTML = "Add to cart";
-    cartButton.onclick = ()=> addToCart(element.id);
+    cartButton.onclick = () => addToCart(element.id);
 
     newItem.innerHTML = `<h3>${element.name}</h3>`;
     newItem.innerHTML += `<img src='https://freesvg.org/img/Placeholder.png'></img> <br>`;
