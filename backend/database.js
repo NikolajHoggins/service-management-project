@@ -15,7 +15,7 @@ con.connect(function (err) {
 });
 
 con.query(
-  "CREATE TABLE IF NOT EXISTS test ( `id` INTEGER PRIMARY KEY AUTO_INCREMENT, `city` varchar(64), `ip` varchar(16))",
+  "CREATE TABLE admins(id int AUTO_INCREMENT PRIMARY KEY, email varchar(255) NOT NULL, password varchar(255) NOT NULL);",
   (err) => {
     if (err) console.log("ERROR: \n", err);
   }
