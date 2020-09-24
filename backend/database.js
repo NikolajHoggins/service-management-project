@@ -15,7 +15,7 @@ con.connect(function (err) {
 });
 
 con.query(
-  "CREATE TABLE IF NOT EXISTS weather_requests ( `id` INTEGER PRIMARY KEY AUTO_INCREMENT, `city` varchar(64), `ip` varchar(16))",
+  "CREATE TABLE IF NOT EXISTS test ( `id` INTEGER PRIMARY KEY AUTO_INCREMENT, `city` varchar(64), `ip` varchar(16))",
   (err) => {
     if (err) console.log("ERROR: \n", err);
   }
