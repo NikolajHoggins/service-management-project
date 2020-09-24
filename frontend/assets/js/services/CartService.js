@@ -10,4 +10,8 @@ class CartService {
   async getCart() {
     return localStorage.getItem("cart");
   }
+
+  clearCart() {
+    localStorage.setItem("cart", JSON.stringify([]));
+  }
 }
