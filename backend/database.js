@@ -45,7 +45,7 @@ con.query(
 );
 
 con.query(
-  "CREATE TABLE orderdetails(id int AUTO_INCREMENT PRIMARY KEY,orderid int,productid int,quantity int,FOREIGN KEY (orderid) REFERENCES customers(id),FOREIGN KEY (productid) REFERENCES products(id));",
+  "CREATE TABLE IF NOT EXISTS orderdetails(id int AUTO_INCREMENT PRIMARY KEY,orderid int,productid int,quantity int,FOREIGN KEY (orderid) REFERENCES customers(id),FOREIGN KEY (productid) REFERENCES products(id));",
   (err) => {
     if (err) console.log("ERROR: \n", err);
   }

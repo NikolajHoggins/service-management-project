@@ -9,7 +9,7 @@ app.use(cors());
 
 //We put "/" at the top, to allow access without authorization key
 app.get("/", (req, res) => {
-  res.send("This is the backend for service management app!");
+  return res.status(200).json({ error: "Successfull request to backend" });
 });
 
 // parse application/json
