@@ -27,15 +27,6 @@ app.use(function (req, res, next) {
 });
 
 //Usershit
-app.post("/register", (req, res) => {
-  db.query(
-    `INSERT INTO users(name, email, password, address, phone_number, user_type) VALUES ('${req.body.name}' , '${req.body.description}', '${req.body.price}', '${req.body.picture}')`,
-    (err) => {
-      console.log(err);
-    }
-  );
-  res.sendStatus(200);
-});
 
 app.post("/login", (req, res) => {
   db.query(
@@ -48,6 +39,19 @@ app.post("/login", (req, res) => {
         res.json({ status: "error", error: "invalid login" });
       } else {
         res.sendStatus(500);
+      }
+    }
+  );
+});
+
+app.post("/register", (req, res) => {
+  db.query(
+    `INSERT INTO users(email, password) VALUES ('${req.body.email}', '${req.body.password}');`,
+    (err, result) => {
+      if (err) {
+        res.json({ status: "error", error: "Email taken" });
+      } else {
+        res.json({ status: "success" });
       }
     }
   );
