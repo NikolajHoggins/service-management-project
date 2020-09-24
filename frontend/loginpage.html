@@ -1,18 +1,21 @@
 <html>
-<body>
+  <body>
     <button onclick="goToShop()" style="float: right">Back</button>
-    <form id="form" name=formName onsubmit="return false">
-        <label for="inputFieldText">Type username and password:</label><br>
-        <input type="text" id="inputField1" name="fname"><br>
-        <input type="text" id="inputField2" name="fname"><br>
-        
-        <button onclick="logIn()"> Log in</button>
-        <br>
-        <br>
-        <br>
-        <br>
-        <label id="errorMessage"></label>
+    <form id="form" name="formName" onsubmit="logIn">
+      <label for="inputFieldText">Type username and password:</label><br />
+      <input type="text" id="inputField1" name="fname" /><br />
+      <input type="text" id="inputField2" name="fname" /><br />
+
+      <button type="submit">Log in</button>
+      <br />
+      <br />
+      <br />
+      <br />
+      <label id="errorMessage"></label>
     </form>
+
+    <script src="./assets/js/services/CartService.js"></script>
+    <script src="./assets/js/services/BackendService.js"></script>
     <script src="./assets/js/script.js"></script>
-</body>
+  </body>
 </html>

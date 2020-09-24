@@ -2,10 +2,8 @@ var status;
 const backendService = new BackendService("jesper");
 const cartService = new CartService();
 
-cartService.getCart().then((resp) => console.log(resp));
-backendService.getProducts().then((resp) => console.log(resp));
-
-function logIn() {
+function logIn(e) {
+  e.preventDefault();
   var username = document.getElementById("inputField1").value;
   var password = document.getElementById("inputField2").value;
 
