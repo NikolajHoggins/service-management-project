@@ -14,7 +14,7 @@ function main() {
 
 function validateAdmin() {
   const user = JSON.parse(localStorage.getItem("user"));
-  if (!user || user.user_type !== "admin") {
+  if (!user || user.type !== "admin") {
     window.location.href = "/?error=no_admin";
   }
 }
