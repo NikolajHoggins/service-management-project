@@ -7,7 +7,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
 function main() {
   const cart = JSON.parse(localStorage.getItem("cart"));
   cart.forEach((element) => {
-    const product = backendService.getProductById(element, ({ result }) => {
+    backendService.getProductById(element, ({ result }) => {
       console.log(result);
       var newItem = document.createElement("div");
       var cartButton = document.createElement("button");
