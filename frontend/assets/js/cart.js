@@ -1,11 +1,25 @@
 const backendService = new BackendService("jesper");
+let cart = JSON.parse(localStorage.getItem("cart"));
 
 window.addEventListener("DOMContentLoaded", (event) => {
   main();
+
+  document.getElementById("buyBtn").onclick = () => {
+    if (!cart) {
+      alert("please add items to cart");
+    } else {
+    }
+  };
+  document.getElementById("clearBtn").onclick = () => {
+    localStorage.removeItem("cart");
+    cart = JSON.parse(localStorage.getItem("cart"));
+    main();
+  };
 });
 
 function main() {
-  const cart = JSON.parse(localStorage.getItem("cart"));
+  document.getElementById("cart").innerHTML = "";
+
   if (!cart) {
     document.getElementById("cart").innerHTML = "No items in cart";
     return;

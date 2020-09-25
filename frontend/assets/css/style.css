@@ -1,5 +1,11 @@
-.cart {
+.clear-container {
   margin-top: 50px;
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 12px;
+}
+
+.cart {
   text-align: center;
   font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
@@ -15,4 +21,11 @@
   justify-content: space-around;
   align-items: center;
   border: 1px solid black;
+}
+
+.buy-container {
+  margin-top: 34px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
