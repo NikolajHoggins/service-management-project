@@ -5,6 +5,10 @@ window.addEventListener("DOMContentLoaded", (event) => {
   main();
 
   document.getElementById("buyBtn").onclick = () => {
+    if (!JSON.parse(localStorage.getItem("user"))) {
+      alert("please login to buy");
+      return;
+    }
     if (!cart) {
       alert("please add items to cart");
     } else {

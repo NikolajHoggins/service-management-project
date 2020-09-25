@@ -27,35 +27,5 @@ function main() {
           "ERROR, WRONG USERNAME OR PASSWORD";
       }
     });
-
-    //Attempt login
-
-    if (status == "user") {
-      goToShop();
-    } else if (status == "admin") {
-      goToShop();
-    } else {
-    }
   });
-}
-
-function logIn() {
-  var username = document.getElementById("username").value;
-  var password = document.getElementById("password").value;
-
-  console.log(username, password);
-  if (username == "user" && password == "password") {
-    status = "user";
-  } else if (username == "admin" && password == "password") {
-    status = "admin";
-  }
-
-  if (status == "user") {
-    goToShop();
-  } else if (status == "admin") {
-    goToShop();
-  } else {
-    document.getElementById("errorMessage").innerText =
-      "ERROR, WRONG USERNAME OR PASSWORD";
-  }
 }

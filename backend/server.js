@@ -2,6 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
 const cors = require("cors");
+const bcrypt = require("bcrypt");
 const db = require("./database.js").con;
 require("dotenv").config();
 
@@ -30,34 +31,43 @@ app.use(function (req, res, next) {
 
 app.post("/login", (req, res) => {
   db.query(
-    `SELECT * FROM users WHERE email = '${req.body.email}' AND password = '${req.body.password}'`,
+    `SELECT * FROM users WHERE email = '${req.body.email}'`,
     (err, result) => {
-      if (err) res.sendStatus(500);
-      if (result.length) {
-        res.json({
-          status: "success",
-          user: result,
+      if (err) {
+        res.json({ status: "error", error: err });
+        return;
+      }
+
+      if (result) {
+        bcrypt.compare(req.body.password, result[0].password, (err, bres) => {
+          console.log(bres);
+          if (bres) {
+            res.json({
+              status: "success",
+              user: result,
+            });
+          } else {
+            res.json({ status: "error", error: "invalid login" });
+          }
         });
-      } else if (result.length === 0) {
-        res.json({ status: "error", error: "invalid login" });
-      } else {
-        res.sendStatus(500);
       }
     }
   );
 });
 
 app.post("/register", (req, res) => {
-  db.query(
-    `INSERT INTO users(email, password) VALUES ('${req.body.email}', '${req.body.password}');`,
-    (err, result) => {
-      if (err) {
-        res.json({ status: "error", error: "Email taken" });
-      } else {
-        res.json({ status: "success" });
+  bcrypt.hash(req.body.password, 10, function (err, hash) {
+    db.query(
+      `INSERT INTO users(email, password) VALUES ('${req.body.email}', '${hash}');`,
+      (err, result) => {
+        if (err) {
+          res.json({ status: "error", error: err });
+        } else {
+          res.json({ status: "success" });
+        }
       }
-    }
-  );
+    );
+  });
 });
 
 //add product
