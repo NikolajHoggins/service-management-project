@@ -34,7 +34,10 @@ app.post("/login", (req, res) => {
     (err, result) => {
       if (err) res.sendStatus(500);
       if (result.length) {
-        res.json({ status: "success", user: result });
+        res.json({
+          status: "success",
+          user: result,
+        });
       } else if (result.length === 0) {
         res.json({ status: "error", error: "invalid login" });
       } else {
@@ -78,6 +81,20 @@ app.get("/getProducts", (req, res) => {
       res.status(500).json({ error: err });
     }
   });
+});
+
+//Get products
+app.post("/getProductById", (req, res) => {
+  db.query(
+    `SELECT * FROM products WHERE id = '${req.body.id}'`,
+    (err, result) => {
+      if (result) {
+        res.json({ status: "success", result: result[0] });
+      } else if (err) {
+        res.status(500).json({ error: err });
+      }
+    }
+  );
 });
 
 app.listen(process.env.APP_PORT ?? 8000, () => {

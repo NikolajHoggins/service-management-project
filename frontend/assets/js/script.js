@@ -46,5 +46,5 @@ function getList(resp) {
 }
 
 function addToCart(id) {
-  console.log(id + " added to cart");
+  cartService.addItem(id);
 }

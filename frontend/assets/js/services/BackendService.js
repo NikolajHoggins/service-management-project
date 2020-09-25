@@ -56,11 +56,16 @@ class BackendService {
     }).then((resp) => resp.json());
   }
 
-  getProductById() {
-    return fetch(`${this.baseurl}/getProductById`, {
-      headers: {
-        Authorization: this.apikey,
-      },
-    }).then((resp) => resp.json());
+  getProductById(id, callback = () => {}) {
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", this.baseurl + "/getProductById", true);
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.setRequestHeader("Authorization", this.apikey);
+    xhr.send(
+      JSON.stringify({
+        id,
+      })
+    );
+    xhr.onload = () => callback(JSON.parse(xhr.responseText));
   }
 }
