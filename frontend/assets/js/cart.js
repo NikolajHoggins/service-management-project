@@ -8,6 +8,10 @@ window.addEventListener("DOMContentLoaded", (event) => {
     if (!cart) {
       alert("please add items to cart");
     } else {
+      alert("purchase made!");
+      localStorage.removeItem("cart");
+      cart = JSON.parse(localStorage.getItem("cart"));
+      main();
     }
   };
   document.getElementById("clearBtn").onclick = () => {
