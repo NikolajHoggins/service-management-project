@@ -34,7 +34,7 @@ app.post("/login", (req, res) => {
     (err, result) => {
       if (err) res.sendStatus(500);
       if (result.length) {
-        res.json({ status: "success" });
+        res.json({ status: "success", user: result });
       } else if (result.length === 0) {
         res.json({ status: "error", error: "invalid login" });
       } else {

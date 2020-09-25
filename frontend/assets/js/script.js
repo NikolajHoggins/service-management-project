@@ -3,53 +3,26 @@ const backendService = new BackendService("jesper");
 const cartService = new CartService();
 
 backendService.getProducts().then((resp) => getList(resp));
-
 window.addEventListener("DOMContentLoaded", (event) => {
-  document.getElementById("loginForm").addEventListener("submit", (e) => {
-    e.preventDefault();
-    document.getElementById("errorMessage").innerText = "";
-    var username = document.getElementById("username").value;
-    var password = document.getElementById("password").value;
-    backendService.login(username, password, (res) => {
-      if (res.status === "success") {
-        //Set token
-      } else {
-        //Error msg
-        document.getElementById("errorMessage").innerText =
-          "ERROR, WRONG USERNAME OR PASSWORD";
-      }
-    });
-
-    //Attempt login
-
-    if (status == "user") {
-      goToShop();
-    } else if (status == "admin") {
-      goToShop();
-    } else {
-    }
-  });
+  main();
 });
 
-function logIn() {
-  var username = document.getElementById("username").value;
-  var password = document.getElementById("password").value;
-
-  console.log(username, password);
-  if (username == "user" && password == "password") {
-    status = "user";
-  } else if (username == "admin" && password == "password") {
-    status = "admin";
-  }
-
-  if (status == "user") {
-    goToShop();
-  } else if (status == "admin") {
-    goToShop();
+function main() {
+  const user = JSON.parse(localStorage.getItem("user"));
+  console.log(user);
+  if (user) {
+    document.getElementById("loginBtn").innerHTML = user.email;
+    document.getElementById("loginBtn").addEventListener("click", logout);
   } else {
-    document.getElementById("errorMessage").innerText =
-      "ERROR, WRONG USERNAME OR PASSWORD";
+    document.getElementById("loginBtn").onclick = () =>
+      (window.location.href = "/loginPage.html");
   }
+}
+
+function logout(e) {
+  e.preventDefault();
+  localStorage.removeItem("user");
+  window.location.href = "/";
 }
 
 function getList(resp) {
